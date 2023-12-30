@@ -5,7 +5,7 @@ html_content = json.loads(response.read().decode('utf-8'))
 response = urllib.request.urlopen("https://raw.githubusercontent.com/Shaikst/hashing/main/info.txt")
 hash_type = int(response.read().decode('utf-8').split("\n")[1])
 print("██████╗░███████╗██╗░░░██╗░░░░░██╗███████╗██████╗░\n██╔══██╗██╔════╝██║░░░██║░░░░░██║██╔════╝██╔══██╗\n██║░░██║█████╗░░╚██╗░██╔╝░░░░░██║█████╗░░██████╦╝\n██║░░██║██╔══╝░░░╚████╔╝░██╗░░██║██╔══╝░░██╔══██╗\n██████╔╝███████╗░░╚██╔╝░░╚█████╔╝███████╗██████╦╝\n╚═════╝░╚══════╝░░░╚═╝░░░░╚════╝░╚══════╝╚═════╝░")
-print("Разработанно DevJeb, используется "+hash_type+"-ая система")
+print("Разработанно DevJeb, используется "+hash_type+"-ая система\n"+response.read().decode('utf-8').split("\n")[2])
 a=input('Введите хэшированные данные: ')
 b=[a[i:i+hash_type] for i in range(0, len(a), hash_type)]
 result=""
