@@ -1,3 +1,4 @@
+
 import urllib.request
 import json
 import time
@@ -19,16 +20,17 @@ class Hash():
         print('Хэшированные данные:\n\n\n' + result+"\n\n\n")
         print('Результат был выполнен за ' + str(time.time()-back))
     def hash_64(*args):
-        result=[]
         i=0
+        rs=[]
         for content in args:
+            result=""
             content=str(content)
             response = urllib.request.urlopen("https://raw.githubusercontent.com/Shaikst/hashing/main/Hashing_dictionary.json")
             hashing = json.loads(response.read().decode('utf-8'))
             b=list(content)
             for s in b:
-                result.append(hashing[s])
-            i+=1
+                result+=hashing[s]
+            rs.append(result)
         return result
     def custom(type, *args):
         rs=[]
