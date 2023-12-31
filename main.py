@@ -18,19 +18,20 @@ class Hash():
             result+=hashing[s]
         print('Хэшированные данные:\n\n\n' + result+"\n\n\n")
         print('Результат был выполнен за ' + str(time.time()-back))
-    def hash_64(content):
-        content=str(content)
-        response = urllib.request.urlopen("https://raw.githubusercontent.com/Shaikst/hashing/main/Hashing_dictionary.json")
-        hashing = json.loads(response.read().decode('utf-8'))
-        result=""
-        back = time.time()
-        b=list(content)
-        for s in b:
-            result+=hashing[s]
+    def hash_64(*args):
+        result=[]
+        i=0
+        for content in args:
+            content=str(content)
+            response = urllib.request.urlopen("https://raw.githubusercontent.com/Shaikst/hashing/main/Hashing_dictionary.json")
+            hashing = json.loads(response.read().decode('utf-8'))
+            b=list(content)
+            for s in b:
+                result.append(hashing[s])
+            i+=1
         return result
-    def custom(content, type):
-        content=str(content)
-        type=int(type)
+    def custom(type, *args):
+        rs=[]
         s = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '!', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', ':', ';', '<', '=', '>', '?', '@', '[', ']', '^', '_', '`', '{', '|', '}', '~']
         f = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~', ' ', 'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я', 'а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я']
         g = {}
@@ -53,14 +54,21 @@ class Hash():
                     q= False
             g[d] = token
         hashing = g
-        result=""
-        b=list(content)
-        for s in b:
-            result+=hashing[s]
-        return result, g 
-    def custom_not_a_dictionary(content, type):
-        content=str(content)
+        i=0
+        for content in args:
+            content=str(content)
+            type=int(type)
+            b=list(content)
+            result=""
+            for s in b:
+                result+=hashing[s]
+            rs.append(result)
+            i+=1
+        rs.append(hashing)
+        return rs
+    def custom_not_a_dictionary(type, *args):
         type=int(type)
+        rs=[]
         s = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '!', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', ':', ';', '<', '=', '>', '?', '@', '[', ']', '^', '_', '`', '{', '|', '}', '~']
         f = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~', ' ', 'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я', 'а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я']
         g = {}
@@ -83,35 +91,51 @@ class Hash():
                     q= False
             g[d] = token
         hashing = g
-        result=""
-        b=list(content)
-        for s in b:
-            result+=hashing[s]
-        return result
-    def anti_hash_custom(content, dictionary):
-        content=str(content)
-        for c,a in dictionary.items():
-            hash_type=len(a)
-            break
-        b=[content[i:i+hash_type] for i in range(0, len(content), hash_type)]
-        result=""
-        for s in b:
-            for v,h in dictionary.items():
-                if h==s:
-                    break
-            result+=v
-        return result
-    def anti_hash(content):
-        content=str(content)
-        dictionary =json.loads(urllib.request.urlopen("https://raw.githubusercontent.com/Shaikst/hashing/main/Hashing_dictionary.json").read().decode('utf-8'))
-        for c,a in dictionary.items():
-            hash_type=len(a)
-            break
-        b=[content[i:i+hash_type] for i in range(0, len(content), hash_type)]
-        result=""
-        for s in b:
-            for v,h in dictionary.items():
-                if h==s:
-                    break
-            result+=v
-        return result
+        i=0
+        for content in args:
+            content=str(content)
+            type=int(type)
+            result=""
+            b=list(content)
+            for s in b:
+                result+=hashing[s]
+            rs.append(result)
+            i+=1
+        return rs
+    def anti_hash_custom(dictionary, *args):
+        z=0
+        rs=[]
+        for content in args:
+            content=str(content)
+            for c,a in dictionary.items():
+                hash_type=len(a)
+                break
+            b=[content[i:i+hash_type] for i in range(0, len(content), hash_type)]
+            result=""
+            for s in b:
+                for v,h in dictionary.items():
+                    if h==s:
+                        break
+                result+=v
+            rs.append(result)
+            z+=1
+        return rs
+    def anti_hash(*args):
+        j=0
+        rs=[]
+        for content in args:
+            content=str(content)
+            dictionary =json.loads(urllib.request.urlopen("https://raw.githubusercontent.com/Shaikst/hashing/main/Hashing_dictionary.json").read().decode('utf-8'))
+            for c,a in dictionary.items():
+                hash_type=len(a)
+                break
+            b=[content[i:i+hash_type] for i in range(0, len(content), hash_type)]
+            result=""
+            for s in b:
+                for v,h in dictionary.items():
+                    if h==s:
+                        break
+                result+=v
+            rs.append(result)
+            j+=1
+        return rs
